@@ -1,0 +1,47 @@
+#include <graphics.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int x1, y1, x2, y2;
+    int dx, dy, s, i;
+    float xi, yi;
+    int gd = DETECT, gm;
+
+    printf("Enter the coordinates of the first point (x1 y1): ");
+    scanf("%d %d", &x1, &y1);
+
+    printf("Enter the coordinates of the second point (x2 y2): ");
+    scanf("%d %d", &x2, &y2);
+
+    dx = x2 - x1;
+    dy = y2 - y1;
+
+    if (abs(dx) > abs(dy))
+        s = abs(dx);
+    else
+        s = abs(dy);
+
+    xi = (float)dx / s;
+    yi = (float)dy / s;
+
+    float l = x1;
+     float m = y1;
+
+    initgraph(&gd, &gm, NULL);
+
+    putpixel(l, m, RED);
+
+    for (i = 0; i < s; i++) {
+        l = l + xi;
+        m = m + yi;
+        putpixel(l, m, RED);
+        delay(100);
+    }
+
+    delay(10000);
+
+    closegraph();
+
+    return 0;
+}
